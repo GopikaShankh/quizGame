@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Master</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+      @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes optionSlideIn {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes quizBoxSlide {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .category {
+      animation: slideIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .option {
+      animation: optionSlideIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    #quizBox {
+      animation: quizBoxSlide 0.6s ease forwards;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Row -->
+    <header>
+      <h1>📚 Quiz Master</h1>
+      <div class="header-buttons">
+        <button onclick="fetchCategories()">🏠</button>
+        <div id="soundToggle">🔊</div>
+      </div>
+    </header>
+
+    <!-- Info Row -->
+    <div class="info-row">
+      <div id="timer" style="display: none;">⏱️ 20s</div>
+      <div id="score" style="display: none;">Score: 0</div>
+      <div id="highScore" style="display: none;">High Score: 0</div>
+    </div>
+
+    <!-- Category Section -->
+      <section id="categoryContainer">
+        <h2>Select a Quiz Category</h2>
+        <div class="categories" id="categories"></div>
+      </section>
+    
+    <!-- Quiz Section -->
+    <section id="quizSection" style="display: none;">
+      <div id="quizBox">
+        <div id="question"></div>
+        <div id="options"></div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+          <button class="btn" onclick="previousQuestion()">⏮️ Previous</button>
+          <button class="btn" onclick="nextQuestion()">⏭️ Next</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section id="summary" style="display: none;">
+      <h2>📊 Quiz Summary</h2>
+      <p>Total Questions: <span id="totalQ"></span></p>
+      <p>Correct Answers: <span id="correctQ"></span></p>
+      <p>Wrong Answers: <span id="wrongQ"></span></p>
+      <button onclick="restartQuiz()">🔁 Restart</button>
+    </section>
+  </div>
+
+  <!-- Audio -->
+  <audio id="backgroundMusic" src="background.mp3" loop></audio>
+  <audio id="correctSound" src="right.mp3"></audio>
+  <audio id="wrongSound" src="wrong.mp3"></audio>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>
